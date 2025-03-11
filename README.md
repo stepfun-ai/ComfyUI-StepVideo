@@ -1,4 +1,5 @@
 # ComfyUI-StepVideo
+This repository contains ComfyUI custom nodes for StepVideo.
 
 ## TI2V
 ### Model Weights
