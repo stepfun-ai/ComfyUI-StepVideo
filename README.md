@@ -2,6 +2,10 @@
 This repository contains ComfyUI custom nodes for StepVideo.
 
 ## TI2V
+### Workflow
+[TI2V.json](workflow/TI2V.json)
+![TI2V](workflow/TI2V.jpg)
+
 ### Model Weights
 Download the model weights from [this link](https://huggingface.co/stepfun-ai/stepvideo-ti2v).
 

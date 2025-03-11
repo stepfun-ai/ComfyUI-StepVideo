@@ -1,0 +1,197 @@
+{
+  "last_node_id": 17,
+  "last_link_id": 26,
+  "nodes": [
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        312.82855224609375,
+        -25.91734504699707
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            25
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "pexels-olly-3777931.png",
+        "image"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1141.04150390625,
+        -27.459800720214844
+      ],
+      "size": [
+        214.7587890625,
+        457.55181884765625
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 26
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "shape": 7,
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "shape": 7,
+          "link": null
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 20,
+        "loop_count": 0,
+        "filename_prefix": "AnimateDiff",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "AnimateDiff_00002.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 20,
+            "workflow": "AnimateDiff_00002.png",
+            "fullpath": "/data/script/ComfyUI/temp/AnimateDiff_00002.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": "TI2V",
+      "pos": [
+        684.4254150390625,
+        -26.567501068115234
+      ],
+      "size": [
+        400,
+        232
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_input",
+          "type": "IMAGE",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            26
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TI2V"
+      },
+      "widgets_values": [
+        "100.98.203.207",
+        "/mnt/shared-storage/tenant/opensource_ti2v",
+        15,
+        5,
+        17,
+        102,
+        "笑起来"
+      ]
+    }
+  ],
+  "links": [
+    [
+      25,
+      3,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
+      15,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8264462809917354,
+      "offset": [
+        -237.17644108956011,
+        213.46661350599774
+      ]
+    },
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
