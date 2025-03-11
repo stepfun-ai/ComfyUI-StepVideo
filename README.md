@@ -23,3 +23,7 @@ python api/call_remote_server.py --model_dir where_you_download_dir &  ## We ass
 cd ComfyUI
 python main.py
 ```
+
+## todo
+- [x] TI2V node
+- [ ] T2V node
