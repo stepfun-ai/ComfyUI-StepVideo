@@ -1,0 +1,7 @@
+tests
+debug
+dev
+*.egg-info
+__pycache__
+lib
+results
