@@ -32,24 +32,24 @@ class TI2V:
                     "lazy": True
                 }),
                 "infer_steps": ("INT", {
-                    "default": 15, 
+                    "default": 50, 
                     "min": 0, #Minimum value
-                    "max": 50, #Maximum value
+                    "max": 100, #Maximum value
                     "step": 1, #Slider's step
                     "display": "number", # Cosmetic only: display as "number" or "slider"
                     # "lazy": True # Will only be evaluated if check_lazy_status requires it
                 }),
                 "cfg_scale": ("FLOAT", {
-                    "default": 5.0,
+                    "default": 9,
                     "min": 0.0,
-                    "max": 20.0,
+                    "max": 50.0,
                     "step": 0.1,
                     # "round": 0.001, #The value representing the precision to round to, will be set to the step value by default. Can be set to False to disable rounding.
                     "display": "number",
                     # "lazy": True
                 }),
                 "time_shift": ("FLOAT", {
-                    "default": 17.0,
+                    "default": 13.0,
                     "min": 0.0,
                     "max": 50.0,
                     "step": 0.1,
@@ -60,10 +60,19 @@ class TI2V:
                 "num_frames": ("INT", {
                     "default": 102, 
                     "min": 0, #Minimum value
-                    "max": 150, #Maximum value
+                    "max": 204, #Maximum value
                     "step": 1, #Slider's step
                     "display": "number", # Cosmetic only: display as "number" or "slider"
                     # "lazy": True # Will only be evaluated if check_lazy_status requires it
+                }),
+                "motion_score": ("FLOAT", {
+                    "default": 5,
+                    "min": 0.0,
+                    "max": 50.0,
+                    "step": 0.1,
+                    # "round": 0.001, #The value representing the precision to round to, will be set to the step value by default. Can be set to False to disable rounding.
+                    "display": "number",
+                    # "lazy": True
                 }),
                 "text_prompt": ("STRING", {
                     "multiline": True,
@@ -76,7 +85,7 @@ class TI2V:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "ti2v"
 
-    def ti2v(self, image_input, remote_server_url, model_dir, infer_steps, cfg_scale, time_shift, num_frames, text_prompt):
+    def ti2v(self, image_input, remote_server_url, model_dir, infer_steps, cfg_scale, time_shift, num_frames, motion_score, text_prompt):
         script_dir = 'custom_nodes/ComfyUI-StepVideo/Step-Video-TI2V'
         os.makedirs(f'{script_dir}/results', exist_ok=True)
         
@@ -85,7 +94,7 @@ class TI2V:
 
         parallel = 4 #
 
-        command = f'cd {script_dir} && torchrun --nproc_per_node {parallel} run_parallel.py --model_dir {model_dir} --vae_url {remote_server_url} --caption_url {remote_server_url}  --ulysses_degree {parallel} --first_image_path results/{task_name}_img.png --prompt "{text_prompt}" --infer_steps {infer_steps}  --cfg_scale {cfg_scale} --time_shift {time_shift} --num_frames {num_frames} --output_file_name {task_name}_vid'
+        command = f'cd {script_dir} && torchrun --nproc_per_node {parallel} run_parallel.py --model_dir {model_dir} --vae_url {remote_server_url} --caption_url {remote_server_url}  --ulysses_degree {parallel} --first_image_path results/{task_name}_img.png --prompt "{text_prompt}" --infer_steps {infer_steps}  --cfg_scale {cfg_scale} --time_shift {time_shift} --num_frames {num_frames} --output_file_name {task_name}_vid --motion_score {motion_score} --name_suffix comfyui'
         os.system(command)
 
         video_path = f'{script_dir}/results/{task_name}_vid-comfyui.mp4'

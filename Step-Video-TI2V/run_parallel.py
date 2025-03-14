@@ -18,10 +18,7 @@ if __name__ == "__main__":
     pipeline = StepVideoPipeline.from_pretrained(args.model_dir).to(dtype=torch.bfloat16, device="cpu")
 
     pipeline.transformer = pipeline.transformer.to(device)
-    pipeline.setup_api(
-        vae_url = args.vae_url,
-        caption_url = args.caption_url,
-    )
+    pipeline.setup_pipeline(args)
     
     
     prompt = args.prompt
@@ -36,7 +33,8 @@ if __name__ == "__main__":
         time_shift=args.time_shift,
         pos_magic=args.pos_magic,
         neg_magic=args.neg_magic,
-        output_file_name=args.output_file_name
+        output_file_name=args.output_file_name,
+        motion_score=args.motion_score
     )
     
     dist.destroy_process_group()

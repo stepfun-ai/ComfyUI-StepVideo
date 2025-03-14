@@ -83,7 +83,7 @@ class StepVideoPipeline(DiffusionPipeline):
         vae_url: str = '127.0.0.1',
         caption_url: str = '127.0.0.1',
         save_path: str = './results',
-        name_suffix: str = 'comfyui',
+        name_suffix: str = '',
     ):
         super().__init__()
 
@@ -99,7 +99,13 @@ class StepVideoPipeline(DiffusionPipeline):
         self.vae_url = vae_url
         self.caption_url = caption_url
         self.setup_api(self.vae_url, self.caption_url)
-        
+    
+    def setup_pipeline(self, args):
+        self.args = args
+        self.video_processor = VideoProcessor(self.args.save_path, self.args.name_suffix)
+        self.setup_api(args.vae_url, args.caption_url)
+        return self
+
     def setup_api(self, vae_url, caption_url):
         self.vae_url = vae_url
         self.caption_url = caption_url
