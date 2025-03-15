@@ -28,7 +28,12 @@ class TI2V:
                 }),
                 "model_dir": ("STRING", {
                     "multiline": False,
-                    "default": "models/diffusion_models",
+                    "default": "",
+                    "lazy": True
+                }),
+                "script_dir": ("STRING", {
+                    "multiline": False,
+                    "default": "",
                     "lazy": True
                 }),
                 "infer_steps": ("INT", {
@@ -85,14 +90,13 @@ class TI2V:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "ti2v"
 
-    def ti2v(self, image_input, remote_server_url, model_dir, infer_steps, cfg_scale, time_shift, num_frames, motion_score, text_prompt):
-        script_dir = 'custom_nodes/ComfyUI-StepVideo/Step-Video-TI2V'
+    def ti2v(self, image_input, remote_server_url, model_dir, script_dir, infer_steps, cfg_scale, time_shift, num_frames, motion_score, text_prompt):
         os.makedirs(f'{script_dir}/results', exist_ok=True)
         
         task_name = text_prompt[:50]
         save_hwc_tensor_as_png(image_input[0], f'{script_dir}/results/{task_name}_img.png')
 
-        parallel = 4 #
+        parallel = 4 # or parallel = 8
 
         command = f'cd {script_dir} && torchrun --nproc_per_node {parallel} run_parallel.py --model_dir {model_dir} --vae_url {remote_server_url} --caption_url {remote_server_url}  --ulysses_degree {parallel} --first_image_path results/{task_name}_img.png --prompt "{text_prompt}" --infer_steps {infer_steps}  --cfg_scale {cfg_scale} --time_shift {time_shift} --num_frames {num_frames} --output_file_name {task_name}_vid --motion_score {motion_score} --name_suffix comfyui'
         os.system(command)

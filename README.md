@@ -10,24 +10,22 @@ This repository contains ComfyUI custom nodes for StepVideo.
 Download the model weights from [this link](https://huggingface.co/stepfun-ai/stepvideo-ti2v).
 
 ### Install
+1. Install [Step-Video-TI2V](https://github.com/stepfun-ai/Step-Video-TI2V)
+
+2. Install ComfyUI custom nodes for StepVideo
 ```bash
 cd ComfyUI/custom_nodes
 git clone https://github.com/stepfun-ai/ComfyUI-StepVideo.git 
 ```
 
-```bash
-cd ComfyUI/custom_nodes/ComfyUI-StepVideo/Step-Video-TI2V
-conda create -n stepvideo python=3.10
-conda activate stepvideo
-pip install -e .
-```
-
 ### Inference
+1. Launch Step-Video-TI2V remote_server
 ```bash
-cd ComfyUI/custom_nodes/ComfyUI-StepVideo/Step-Video-TI2V
+cd Step-Video-TI2V
 python api/call_remote_server.py --model_dir where_you_download_dir &  ## We assume you have more than 4 GPUs available. This command will return the URL for both the caption API and the VAE API. Please use the returned URL as "remote_server_url" parameter in the "TI2V" node.
 ```
 
+2. Launch ComfyUI
 ```bash
 cd ComfyUI
 python main.py

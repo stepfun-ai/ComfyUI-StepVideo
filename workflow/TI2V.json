@@ -1,51 +1,13 @@
 {
-  "last_node_id": 17,
-  "last_link_id": 26,
+  "last_node_id": 19,
+  "last_link_id": 30,
   "nodes": [
-    {
-      "id": 3,
-      "type": "LoadImage",
-      "pos": [
-        312.82855224609375,
-        -25.91734504699707
-      ],
-      "size": [
-        315,
-        314
-      ],
-      "flags": {},
-      "order": 0,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "IMAGE",
-          "type": "IMAGE",
-          "links": [
-            25
-          ],
-          "slot_index": 0
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "LoadImage"
-      },
-      "widgets_values": [
-        "pexels-olly-3777931.png",
-        "image"
-      ]
-    },
     {
       "id": 12,
       "type": "VHS_VideoCombine",
       "pos": [
-        1141.04150390625,
-        -27.459800720214844
+        1108.92138671875,
+        -27.019807815551758
       ],
       "size": [
         214.7587890625,
@@ -58,7 +20,7 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 26
+          "link": 30
         },
         {
           "name": "audio",
@@ -102,29 +64,67 @@
         "save_output": false,
         "videopreview": {
           "hidden": false,
-          "paused": false,
+          "paused": true,
           "params": {
-            "filename": "AnimateDiff_00002.mp4",
+            "filename": "AnimateDiff_00004.mp4",
             "subfolder": "",
             "type": "temp",
             "format": "video/h264-mp4",
             "frame_rate": 20,
-            "workflow": "AnimateDiff_00002.png",
-            "fullpath": "/data/script/ComfyUI/temp/AnimateDiff_00002.mp4"
+            "workflow": "AnimateDiff_00004.png",
+            "fullpath": "/data/script/ComfyUI/temp/AnimateDiff_00004.mp4"
           }
         }
       }
     },
     {
-      "id": 15,
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        312.82855224609375,
+        -25.91734504699707
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            29
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "pexels-olly-3777931.png",
+        "image"
+      ]
+    },
+    {
+      "id": 19,
       "type": "TI2V",
       "pos": [
-        684.4254150390625,
-        -26.567501068115234
+        667.665283203125,
+        -26.430679321289062
       ],
       "size": [
         400,
-        232
+        280
       ],
       "flags": {},
       "order": 1,
@@ -133,7 +133,7 @@
         {
           "name": "image_input",
           "type": "IMAGE",
-          "link": 25
+          "link": 29
         }
       ],
       "outputs": [
@@ -141,7 +141,7 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            26
+            30
           ],
           "slot_index": 0
         }
@@ -150,28 +150,30 @@
         "Node name for S&R": "TI2V"
       },
       "widgets_values": [
-        "100.98.203.207",
-        "/mnt/shared-storage/tenant/opensource_ti2v",
+        "100.96.67.87",
+        "/data/script/check/model/stepvideo-ti2v",
+        "/data/script/check/Step-Video-TI2V",
         15,
+        9,
+        13,
+        51,
         5,
-        17,
-        102,
-        "笑起来"
+        "闭上眼睛。"
       ]
     }
   ],
   "links": [
     [
-      25,
+      29,
       3,
       0,
-      15,
+      19,
       0,
       "IMAGE"
     ],
     [
-      26,
-      15,
+      30,
+      19,
       0,
       12,
       0,
@@ -182,10 +184,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.8264462809917354,
+      "scale": 0.9090909090909091,
       "offset": [
-        -237.17644108956011,
-        213.46661350599774
+        -257.5852157075672,
+        119.49067721285375
       ]
     },
     "VHS_latentpreview": false,
