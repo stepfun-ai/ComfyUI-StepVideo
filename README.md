@@ -33,11 +33,12 @@ python main.py
 
 ## TI2V_API
 ### Workflow
-[TI2V.json](workflow/TI2V_API.json)
-![TI2V](workflow/TI2V_API.jpg)
+[TI2V_API.json](workflow/TI2V_API.json)
+![TI2V_API](workflow/TI2V_API.jpg)
 
 ### Usage
 api_url: https://api.stepfun.com/v1/video/generations
+
 api_key: get api_key from https://platform.stepfun.com
 
 ## Todo
